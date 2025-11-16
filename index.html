@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <title>Sorokin Retouch Panel</title>
+  <script src="https://telegram.org/js/telegram-web-app.js"></script>
+  <style>
+    body {
+      background: #0f0f13;
+      color: #fff;
+      font-family: system-ui, sans-serif;
+      margin: 0;
+      padding: 16px;
+    }
+    h1 {
+      font-size: 18px;
+      margin-bottom: 12px;
+    }
+    .btn {
+      display: block;
+      width: 100%;
+      margin-bottom: 10px;
+      padding: 12px 16px;
+      border-radius: 10px;
+      border: 1px solid #7f5af0;
+      background: #16161f;
+      text-align: left;
+      font-size: 15px;
+      cursor: pointer;
+    }
+    .btn span {
+      margin-right: 8px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Выбери режим ретуши</h1>
+
+  <button class="btn" onclick="selectMode('cheap')">
+    <span>💸</span> Дешевая ретушь
+  </button>
+
+  <button class="btn" onclick="selectMode('sorokin')">
+    <span>⭐</span> СорокинРетушь
+  </button>
+
+  <button class="btn" onclick="selectMode('faceswap')">
+    <span>✂️</span> Замена лица (позже)
+  </button>
+
+  <script>
+    const tg = window.Telegram.WebApp;
+    tg.expand(); // разворачиваем на весь экран
+
+    function selectMode(mode) {
+      // шлём данные назад в бота
+      tg.sendData(JSON.stringify({action: "set_mode", mode: mode}));
+      tg.close();
+    }
+  </script>
+</body>
+</html>
